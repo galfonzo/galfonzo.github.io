@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <title>Buscador de Viajes Mejorado - TuneMyTrip</title>
   <style>
+    /* Fondo planeta Tierra con trazas aéreas */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      /* Imagen de fondo planeta Tierra con trazas aéreas */
+      background:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://cdn.pixabay.com/photo/2017/01/20/00/30/earth-1990217_1280.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
       min-height: 100vh;
@@ -338,153 +342,4 @@
     <form id="insurance-quote-form">
       <label for="insured-name">Nombre completo</label>
       <input type="text" id="insured-name" name="insured-name" required>
-      <label for="insured-age">Edad</label>
-      <input type="number" id="insured-age" name="insured-age" min="0" max="120" maxlength="3" required>
-      <label for="insured-country">País de destino</label>
-      <input type="text" id="insured-country" name="insured-country" required>
-      <div class="row">
-        <div>
-          <label for="insured-start-date">Fecha inicio</label>
-          <input type="date" id="insured-start-date" name="insured-start-date" required>
-        </div>
-        <div>
-          <label for="insured-end-date">Fecha fin</label>
-          <input type="date" id="insured-end-date" name="insured-end-date" required>
-        </div>
-      </div>
-      <button type="submit">Solicitar cotización</button>
-    </form>
-    <div id="insurance-quote-result" style="margin-top:18px;"></div>
-  </div>
-
-  <script>
-    const thematicAirports = {
-      arquitectura: [
-        { name: "Barcelona (BCN) - España", code: "BCN" },
-        { name: "Dubái (DXB) - Emiratos Árabes", code: "DXB" },
-        { name: "París (CDG) - Francia", code: "CDG" }
-      ],
-      playas: [
-        { name: "Cancún (CUN) - México", code: "CUN" },
-        { name: "Miami (MIA) - EE.UU.", code: "MIA" },
-        { name: "Phuket (HKT) - Tailandia", code: "HKT" }
-      ],
-      montanas: [
-        { name: "Denver (DEN) - EE.UU.", code: "DEN" },
-        { name: "Santiago (SCL) - Chile", code: "SCL" },
-        { name: "Zúrich (ZRH) - Suiza", code: "ZRH" }
-      ],
-      cultura: [
-        { name: "Roma (FCO) - Italia", code: "FCO" },
-        { name: "Kyoto (KIX) - Japón", code: "KIX" },
-        { name: "Estambul (IST) - Turquía", code: "IST" }
-      ],
-      deporte: [
-        { name: "Londres (LHR) - Reino Unido", code: "LHR" },
-        { name: "Melbourne (MEL) - Australia", code: "MEL" },
-        { name: "Madrid (MAD) - España", code: "MAD" }
-      ],
-      tours: [
-        { name: "El Cairo (CAI) - Egipto", code: "CAI" },
-        { name: "Nueva Delhi (DEL) - India", code: "DEL" },
-        { name: "Pekín (PEK) - China", code: "PEK" }
-      ]
-    };
-
-    const modal = document.getElementById('modal-airports');
-    const airportList = document.getElementById('airport-list');
-    const closeModalBtn = document.getElementById('close-modal-airports');
-    const destinationInput = document.getElementById('destination');
-
-    document.querySelectorAll('.btn-feature').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const theme = btn.getAttribute('data-theme');
-        const airports = thematicAirports[theme] || [];
-        airportList.innerHTML = airports.map(a =>
-          `<li><button class="airport-btn" data-code="${a.code}">${a.name}</button></li>`
-        ).join('');
-        modal.style.display = "flex";
-      });
-    });
-
-    airportList.addEventListener('click', e => {
-      if (e.target.classList.contains('airport-btn')) {
-        const code = e.target.getAttribute('data-code');
-        destinationInput.value = code;
-        modal.style.display = "none";
-      }
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener('click', e => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-
-    const travelInsuranceCheckbox = document.getElementById('travelInsurance');
-    const insuranceSection = document.getElementById('insurance-quote-section');
-    travelInsuranceCheckbox.addEventListener('change', () => {
-      insuranceSection.style.display = travelInsuranceCheckbox.checked ? 'block' : 'none';
-    });
-    insuranceSection.style.display = travelInsuranceCheckbox.checked ? 'block' : 'none';
-
-    document.getElementById('search-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        origin: form.origin.value.trim().toUpperCase(),
-        destination: form.destination.value.trim().toUpperCase(),
-        checkInDate: form.checkInDate.value,
-        checkOutDate: form.checkOutDate.value,
-        travelInsurance: form.travelInsurance.checked
-      };
-
-      if (data.checkOutDate <= data.checkInDate) {
-        alert('La fecha de salida debe ser posterior a la fecha de llegada.');
-        return;
-      }
-
-      sessionStorage.setItem('searchData', JSON.stringify(data));
-      window.location.href = 'resultados.html';
-    });
-
-    document.getElementById('insurance-quote-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const name = document.getElementById('insured-name').value.trim();
-      const age = parseInt(document.getElementById('insured-age').value, 10);
-      const country = document.getElementById('insured-country').value.trim();
-      const startDate = document.getElementById('insured-start-date').value;
-      const endDate = document.getElementById('insured-end-date').value;
-
-      if (endDate <= startDate) {
-        alert('La fecha de fin debe ser posterior a la fecha de inicio.');
-        return;
-      }
-
-      let quote = 0;
-      if (age < 18) quote = 30;
-      else if (age < 40) quote = 50;
-      else if (age < 65) quote = 70;
-      else quote = 120;
-
-      const resultDiv = document.getElementById('insurance-quote-result');
-      resultDiv.innerHTML = `
-        <div style="background:#003f5c;padding:15px;border-radius:8px;">
-          <strong style="color:#00c6ff;font-size:1.2em;">Cotización para ${name}:</strong><br>
-          <span>Destino: ${country}</span><br>
-          <span>Fechas: ${startDate} a ${endDate}</span><br>
-          <span>Edad: ${age} años</span><br>
-          <span style="font-size:1.1em;">Precio estimado: <strong style="color:#fff;">$${quote} USD</strong></span>
-        </div>
-        <div style="margin-top:10px;">
-          <button onclick="alert('¡Solicitud enviada! Un asesor te contactará pronto.')" style="background:#00c6ff;color:#003f5c;font-weight:700;padding:10px 22px;border:none;border-radius:7px;cursor:pointer;">Solicitar este seguro</button>
-        </div>
-      `;
-    });
-  </script>
-</body>
-</html>
+      <label for
