@@ -19,7 +19,6 @@
       color: #fff;
       min-height: 100vh;
     }
-    /* Estilos para botones, formularios, modal, etc. */
     .logo-container {
       text-align: center;
       margin: 30px 0;
@@ -65,7 +64,7 @@
       color: #0077cc;
       background: #fff;
     }
-    form {
+    form#search-form {
       max-width: 650px;
       margin: 0 auto 40px auto;
       background: rgba(0,0,0,0.7);
@@ -73,20 +72,20 @@
       border-radius: 10px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
-    form > div.row {
+    form#search-form > div.row {
       display: flex;
       gap: 20px;
       margin-bottom: 15px;
     }
-    form label {
+    form#search-form label {
       display: block;
       margin-bottom: 6px;
       font-weight: 600;
       color: #fff;
     }
-    form input[type="text"],
-    form input[type="date"],
-    form input[type="number"] {
+    form#search-form input[type="text"],
+    form#search-form input[type="date"],
+    form#search-form input[type="number"] {
       width: 100%;
       padding: 10px 12px;
       border: 1.5px solid #ccc;
@@ -96,9 +95,9 @@
       color: #222;
       transition: border-color 0.3s;
     }
-    form input[type="text"]:focus,
-    form input[type="date"]:focus,
-    form input[type="number"]:focus {
+    form#search-form input[type="text"]:focus,
+    form#search-form input[type="date"]:focus,
+    form#search-form input[type="number"]:focus {
       border-color: #0077cc;
       outline: none;
     }
@@ -127,53 +126,7 @@
       background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
       box-shadow: 0 6px 12px rgba(0,95,163,0.6);
     }
-    #insurance-quote-section {
-      max-width: 650px;
-      margin: 40px auto;
-      background: rgba(0,0,0,0.7);
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      display: none;
-    }
-    #insurance-quote-section input[type="text"],
-    #insurance-quote-section input[type="number"],
-    #insurance-quote-section input[type="date"] {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-      border: 1.5px solid #ccc;
-      font-size: 1rem;
-      background: #f8f8f8;
-      color: #222;
-      transition: border-color 0.3s;
-    }
-    #insurance-quote-section input:focus {
-      border-color: #00c6ff;
-      outline: none;
-    }
-    #insurance-quote-section button[type="submit"] {
-      background: linear-gradient(90deg,#0077cc 60%,#00c6ff 100%);
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0,119,204,0.4);
-      margin-top: 10px;
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    #insurance-quote-section button[type="submit"]:hover {
-      background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
-      box-shadow: 0 6px 12px rgba(0,95,163,0.6);
-    }
-    #insured-age {
-      max-width: 80px;
-    }
+    /* Modal para selección de aeropuerto */
     .modal {
       display: none;
       position: fixed;
@@ -230,8 +183,95 @@
       border: none;
       cursor: pointer;
     }
+    /* Modal para cotización de seguro */
+    #insurance-modal {
+      display: none;
+      position: fixed;
+      z-index: 1100;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    #insurance-modal .modal-content {
+      max-width: 450px;
+      background: #fff;
+      color: #222;
+      border-radius: 12px;
+      padding: 30px 25px 20px 25px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      text-align: left;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    #insurance-modal .modal-content h2 {
+      color: #0077cc;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    #insurance-modal label {
+      display: block;
+      margin: 10px 0 5px 0;
+      font-weight: 600;
+    }
+    #insurance-modal input[type="text"],
+    #insurance-modal input[type="number"],
+    #insurance-modal input[type="date"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f8f8f8;
+      color: #222;
+      transition: border-color 0.3s;
+    }
+    #insurance-modal input[type="text"]:focus,
+    #insurance-modal input[type="number"]:focus,
+    #insurance-modal input[type="date"]:focus {
+      border-color: #0077cc;
+      outline: none;
+    }
+    #insurance-modal button[type="submit"] {
+      margin-top: 15px;
+      background: linear-gradient(90deg, #0077cc 60%, #00c6ff 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0,119,204,0.4);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #insurance-modal button[type="submit"]:hover {
+      background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
+      box-shadow: 0 6px 12px rgba(0,95,163,0.6);
+    }
+    #insurance-modal .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #0077cc;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    #insurance-quote-result {
+      margin-top: 15px;
+      background: #003f5c;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
     @media (max-width: 700px) {
-      form > div.row {
+      form#search-form > div.row {
         flex-direction: column;
       }
       .button-group {
@@ -242,14 +282,14 @@
         max-width: 350px;
         width: 90%;
       }
-      .modal-content {
+      .modal-content, #insurance-modal .modal-content {
         max-width: 90vw;
       }
     }
   </style>
 </head>
 <body>
-  <div class="logo-container" role="banner" aria-label="Logotipo TuneMyTrip" style="text-align:center; margin:30px 0;">
+  <div class="logo-container" role="banner" aria-label="Logotipo TuneMyTrip">
     <svg width="290" height="60" viewBox="0 0 290 60" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
       <title>TuneMyTrip Logotipo</title>
       <desc>Logotipo con texto TuneMyTrip y brújula estilizada</desc>
@@ -274,14 +314,6 @@
       <circle cx="30" cy="30" r="5" fill="#0077cc" />
       <text x="70" y="42" class="tm-text">Tune<tspan class="tm-accent">My</tspan>Trip</text>
     </svg>
-  </div>
-
-  <div id="modal-airports" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-content">
-      <button class="modal-close" id="close-modal-airports" aria-label="Cerrar ventana">&times;</button>
-      <h3 id="modal-title">Selecciona un destino</h3>
-      <ul class="airport-list" id="airport-list"></ul>
-    </div>
   </div>
 
   <div class="button-group" role="navigation" aria-label="Categorías de viajes">
@@ -341,28 +373,41 @@
     <button type="submit" class="btn-submit">Buscar viajes</button>
   </form>
 
-  <div id="insurance-quote-section" aria-live="polite" aria-atomic="true">
-    <h2 style="color:#00c6ff;">Cotiza tu seguro de viaje</h2>
-    <form id="insurance-quote-form">
-      <label for="insured-name">Nombre completo</label>
-      <input type="text" id="insured-name" name="insured-name" required />
-      <label for="insured-age">Edad</label>
-      <input type="number" id="insured-age" name="insured-age" min="0" max="120" maxlength="3" required />
-      <label for="insured-country">País de destino</label>
-      <input type="text" id="insured-country" name="insured-country" required />
-      <div class="row">
-        <div>
-          <label for="insured-start-date">Fecha inicio</label>
-          <input type="date" id="insured-start-date" name="insured-start-date" required />
+  <!-- Modal selección de aeropuerto -->
+  <div id="modal-airports" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="modal-close" id="close-modal-airports" aria-label="Cerrar ventana">&times;</button>
+      <h3 id="modal-title">Selecciona un destino</h3>
+      <ul class="airport-list" id="airport-list"></ul>
+    </div>
+  </div>
+
+  <!-- Modal cotización seguro -->
+  <div id="insurance-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="insurance-modal-title">
+    <div class="modal-content">
+      <button class="modal-close" id="close-insurance-modal" aria-label="Cerrar ventana">&times;</button>
+      <h2 id="insurance-modal-title">Cotiza tu seguro de viaje</h2>
+      <form id="insurance-quote-form">
+        <label for="insured-name">Nombre completo</label>
+        <input type="text" id="insured-name" name="insured-name" required />
+        <label for="insured-age">Edad</label>
+        <input type="number" id="insured-age" name="insured-age" min="0" max="120" maxlength="3" required />
+        <label for="insured-country">País de destino</label>
+        <input type="text" id="insured-country" name="insured-country" required />
+        <div class="row">
+          <div>
+            <label for="insured-start-date">Fecha inicio</label>
+            <input type="date" id="insured-start-date" name="insured-start-date" required />
+          </div>
+          <div>
+            <label for="insured-end-date">Fecha fin</label>
+            <input type="date" id="insured-end-date" name="insured-end-date" required />
+          </div>
         </div>
-        <div>
-          <label for="insured-end-date">Fecha fin</label>
-          <input type="date" id="insured-end-date" name="insured-end-date" required />
-        </div>
-      </div>
-      <button type="submit">Solicitar cotización</button>
-    </form>
-    <div id="insurance-quote-result" style="margin-top:18px;"></div>
+        <button type="submit">Solicitar cotización</button>
+      </form>
+      <div id="insurance-quote-result"></div>
+    </div>
   </div>
 
   <script>
@@ -399,6 +444,7 @@
       ]
     };
 
+    // Modal aeropuertos
     const modal = document.getElementById('modal-airports');
     const airportList = document.getElementById('airport-list');
     const closeModalBtn = document.getElementById('close-modal-airports');
@@ -433,36 +479,53 @@
       }
     });
 
+    // Modal seguro
     const travelInsuranceCheckbox = document.getElementById('travelInsurance');
-    const insuranceSection = document.getElementById('insurance-quote-section');
+    const insuranceModal = document.getElementById('insurance-modal');
+    const closeInsuranceModalBtn = document.getElementById('close-insurance-modal');
+
     const checkInDateInput = document.getElementById('checkInDate');
     const checkOutDateInput = document.getElementById('checkOutDate');
+
     const insuredStartDate = document.getElementById('insured-start-date');
     const insuredEndDate = document.getElementById('insured-end-date');
 
     travelInsuranceCheckbox.addEventListener('change', () => {
       if (travelInsuranceCheckbox.checked) {
-        insuranceSection.style.display = 'block';
-        // Precargar fechas del viaje en el formulario de seguro
+        // Precargar fechas en modal
         insuredStartDate.value = checkInDateInput.value;
         insuredEndDate.value = checkOutDateInput.value;
+        insuranceModal.style.display = 'flex';
       } else {
-        insuranceSection.style.display = 'none';
+        insuranceModal.style.display = 'none';
       }
     });
 
-    // Actualizar fechas del seguro si cambian las fechas del viaje y el seguro está activo
+    closeInsuranceModalBtn.addEventListener('click', () => {
+      insuranceModal.style.display = 'none';
+      travelInsuranceCheckbox.checked = false;
+    });
+
+    window.addEventListener('click', e => {
+      if (e.target === insuranceModal) {
+        insuranceModal.style.display = 'none';
+        travelInsuranceCheckbox.checked = false;
+      }
+    });
+
+    // Actualizar fechas del seguro si cambian las fechas del viaje y modal está abierto
     checkInDateInput.addEventListener('change', () => {
-      if (travelInsuranceCheckbox.checked) {
+      if (insuranceModal.style.display === 'flex') {
         insuredStartDate.value = checkInDateInput.value;
       }
     });
     checkOutDateInput.addEventListener('change', () => {
-      if (travelInsuranceCheckbox.checked) {
+      if (insuranceModal.style.display === 'flex') {
         insuredEndDate.value = checkOutDateInput.value;
       }
     });
 
+    // Formulario principal
     document.getElementById('search-form').addEventListener('submit', e => {
       e.preventDefault();
       const form = e.target;
@@ -473,16 +536,15 @@
         checkOutDate: form.checkOutDate.value,
         travelInsurance: form.travelInsurance.checked
       };
-
       if (data.checkOutDate <= data.checkInDate) {
         alert('La fecha de salida debe ser posterior a la fecha de llegada.');
         return;
       }
-
       sessionStorage.setItem('searchData', JSON.stringify(data));
       window.location.href = 'resultados.html';
     });
 
+    // Formulario cotización seguro
     document.getElementById('insurance-quote-form').addEventListener('submit', e => {
       e.preventDefault();
       const name = document.getElementById('insured-name').value.trim();
@@ -504,12 +566,12 @@
 
       const resultDiv = document.getElementById('insurance-quote-result');
       resultDiv.innerHTML = `
-        <div style="background:#003f5c;padding:15px;border-radius:8px;">
+        <div>
           <strong style="color:#00c6ff;font-size:1.2em;">Cotización para ${name}:</strong><br>
-          <span>Destino: ${country}</span><br>
-          <span>Fechas: ${startDate} a ${endDate}</span><br>
-          <span>Edad: ${age} años</span><br>
-          <span style="font-size:1.1em;">Precio estimado: <strong style="color:#fff;">$${quote} USD</strong></span>
+          Destino: ${country}<br>
+          Fechas: ${startDate} a ${endDate}<br>
+          Edad: ${age} años<br>
+          <span style="font-size:1.1em;">Precio estimado: <strong style="color:#000;">$${quote} USD</strong></span>
         </div>
         <div style="margin-top:10px;">
           <button onclick="alert('¡Solicitud enviada! Un asesor te contactará pronto.')" style="background:#00c6ff;color:#003f5c;font-weight:700;padding:10px 22px;border:none;border-radius:7px;cursor:pointer;">Solicitar este seguro</button>
