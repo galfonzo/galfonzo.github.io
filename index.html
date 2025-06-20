@@ -4,17 +4,24 @@
   <meta charset="UTF-8" />
   <title>Buscador de Viajes Mejorado - TuneMyTrip</title>
   <style>
-    /* Fondo planeta Tierra con trazas aéreas */
+    /* Fondo con planeta Tierra y trazas aéreas superpuestas */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      background:
-        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-        url('https://cdn.pixabay.com/photo/2017/01/20/00/30/earth-1990217_1280.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-image:
+        url('https://cdn.pixabay.com/photo/2017/01/20/00/30/earth-1990217_1280.jpg'),
+        url('https://i.imgur.com/9Y6u8hM.png'); /* Imagen con trazas aéreas */
+      background-position: center center, center center;
+      background-repeat: no-repeat, no-repeat;
+      background-size: cover, cover;
+      background-attachment: fixed, fixed;
+      background-blend-mode: overlay;
+      background-color: rgba(0,0,0,0.5);
       color: #fff;
       min-height: 100vh;
     }
+
+    /* Estilos para botones, formulario, modal, etc. */
     .logo-container {
       text-align: center;
       margin: 30px 0;
@@ -430,10 +437,33 @@
 
     const travelInsuranceCheckbox = document.getElementById('travelInsurance');
     const insuranceSection = document.getElementById('insurance-quote-section');
+    const checkInDateInput = document.getElementById('checkInDate');
+    const checkOutDateInput = document.getElementById('checkOutDate');
+    const insuredStartDate = document.getElementById('insured-start-date');
+    const insuredEndDate = document.getElementById('insured-end-date');
+
     travelInsuranceCheckbox.addEventListener('change', () => {
-      insuranceSection.style.display = travelInsuranceCheckbox.checked ? 'block' : 'none';
+      if (travelInsuranceCheckbox.checked) {
+        insuranceSection.style.display = 'block';
+        // Precargar fechas del viaje en el formulario de seguro
+        insuredStartDate.value = checkInDateInput.value;
+        insuredEndDate.value = checkOutDateInput.value;
+      } else {
+        insuranceSection.style.display = 'none';
+      }
     });
-    insuranceSection.style.display = travelInsuranceCheckbox.checked ? 'block' : 'none';
+
+    // Actualizar fechas del seguro si cambian las fechas del viaje y el seguro está activo
+    checkInDateInput.addEventListener('change', () => {
+      if (travelInsuranceCheckbox.checked) {
+        insuredStartDate.value = checkInDateInput.value;
+      }
+    });
+    checkOutDateInput.addEventListener('change', () => {
+      if (travelInsuranceCheckbox.checked) {
+        insuredEndDate.value = checkOutDateInput.value;
+      }
+    });
 
     document.getElementById('search-form').addEventListener('submit', e => {
       e.preventDefault();
