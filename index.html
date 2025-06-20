@@ -126,7 +126,7 @@
       background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
       box-shadow: 0 6px 12px rgba(0,95,163,0.6);
     }
-    /* Modal estilos */
+    /* Modal para selección de aeropuerto */
     .modal {
       display: none;
       position: fixed;
@@ -140,78 +140,15 @@
       background: #fff;
       color: #222;
       border-radius: 12px;
-      max-width: 450px;
+      max-width: 400px;
       padding: 30px 25px 20px 25px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      text-align: left;
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .modal-content h2, .modal-content h3 {
-      color: #0077cc;
-      margin-top: 0;
-      margin-bottom: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
       text-align: center;
+      position: relative;
     }
-    .modal-content label {
-      display: block;
-      margin: 10px 0 5px 0;
-      font-weight: 600;
-    }
-    .modal-content input[type="text"],
-    .modal-content input[type="number"],
-    .modal-content input[type="date"] {
-      width: 100%;
-      padding: 8px 10px;
-      border: 1.5px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      background: #f8f8f8;
-      color: #222;
-      transition: border-color 0.3s;
-    }
-    .modal-content input[type="text"]:focus,
-    .modal-content input[type="number"]:focus,
-    .modal-content input[type="date"]:focus {
-      border-color: #0077cc;
-      outline: none;
-    }
-    .modal-content button[type="submit"] {
-      margin-top: 15px;
-      background: linear-gradient(90deg, #0077cc 60%, #00c6ff 100%);
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      width: 100%;
-      box-shadow: 0 4px 8px rgba(0,119,204,0.4);
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    .modal-content button[type="submit"]:hover {
-      background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
-      box-shadow: 0 6px 12px rgba(0,95,163,0.6);
-    }
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5em;
+    .modal-content h3 {
       color: #0077cc;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    #insurance-quote-result {
-      margin-top: 15px;
-      background: #003f5c;
-      color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      font-size: 1.1rem;
+      margin-bottom: 18px;
     }
     .airport-list {
       list-style: none;
@@ -236,6 +173,103 @@
     .airport-btn:hover {
       background: linear-gradient(90deg, #0077cc 60%, #00c6ff 100%);
     }
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 15px;
+      font-size: 1.3em;
+      color: #0077cc;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    /* Modal para cotización de seguro */
+    #insurance-modal {
+      display: none;
+      position: fixed;
+      z-index: 1100;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    #insurance-modal .modal-content {
+      max-width: 450px;
+      background: #fff;
+      color: #222;
+      border-radius: 12px;
+      padding: 30px 25px 20px 25px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      text-align: left;
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    #insurance-modal .modal-content h2 {
+      color: #0077cc;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    #insurance-modal label {
+      display: block;
+      margin: 10px 0 5px 0;
+      font-weight: 600;
+    }
+    #insurance-modal input[type="text"],
+    #insurance-modal input[type="number"],
+    #insurance-modal input[type="date"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f8f8f8;
+      color: #222;
+      transition: border-color 0.3s;
+    }
+    #insurance-modal input[type="text"]:focus,
+    #insurance-modal input[type="number"]:focus,
+    #insurance-modal input[type="date"]:focus {
+      border-color: #0077cc;
+      outline: none;
+    }
+    #insurance-modal button[type="submit"] {
+      margin-top: 15px;
+      background: linear-gradient(90deg, #0077cc 60%, #00c6ff 100%);
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 8px rgba(0,119,204,0.4);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    #insurance-modal button[type="submit"]:hover {
+      background: linear-gradient(90deg, #005fa3 60%, #0099cc 100%);
+      box-shadow: 0 6px 12px rgba(0,95,163,0.6);
+    }
+    #insurance-modal .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5em;
+      color: #0077cc;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    #insurance-quote-result {
+      margin-top: 15px;
+      background: #003f5c;
+      color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
     @media (max-width: 700px) {
       form#search-form > div.row {
         flex-direction: column;
@@ -248,7 +282,7 @@
         max-width: 350px;
         width: 90%;
       }
-      .modal-content {
+      .modal-content, #insurance-modal .modal-content {
         max-width: 90vw;
       }
     }
@@ -445,7 +479,7 @@
       }
     });
 
-    // Modal seguro y precarga de fechas y país destino
+    // Modal seguro
     const travelInsuranceCheckbox = document.getElementById('travelInsurance');
     const insuranceModal = document.getElementById('insurance-modal');
     const closeInsuranceModalBtn = document.getElementById('close-insurance-modal');
@@ -455,14 +489,12 @@
 
     const insuredStartDate = document.getElementById('insured-start-date');
     const insuredEndDate = document.getElementById('insured-end-date');
-    const insuredCountry = document.getElementById('insured-country');
 
     travelInsuranceCheckbox.addEventListener('change', () => {
       if (travelInsuranceCheckbox.checked) {
-        // Precargar fechas y país destino
+        // Precargar fechas en modal
         insuredStartDate.value = checkInDateInput.value;
         insuredEndDate.value = checkOutDateInput.value;
-        insuredCountry.value = destinationInput.value.trim();
         insuranceModal.style.display = 'flex';
       } else {
         insuranceModal.style.display = 'none';
@@ -481,7 +513,7 @@
       }
     });
 
-    // Actualizar fechas y país si cambian y modal está abierto
+    // Actualizar fechas del seguro si cambian las fechas del viaje y modal está abierto
     checkInDateInput.addEventListener('change', () => {
       if (insuranceModal.style.display === 'flex') {
         insuredStartDate.value = checkInDateInput.value;
@@ -492,16 +524,13 @@
         insuredEndDate.value = checkOutDateInput.value;
       }
     });
-    destinationInput.addEventListener('input', () => {
-      if (insuranceModal.style.display === 'flex') {
-        insuredCountry.value = destinationInput.value.trim();
-      }
-    });
 
     // Limitar campo Edad a 3 dígitos numéricos
     const insuredAgeInput = document.getElementById('insured-age');
     insuredAgeInput.addEventListener('input', function() {
+      // Eliminar caracteres no numéricos (por si el navegador permite escribir letras)
       this.value = this.value.replace(/\D/g, '');
+      // Limitar a 3 dígitos
       if (this.value.length > 3) {
         this.value = this.value.slice(0, 3);
       }
