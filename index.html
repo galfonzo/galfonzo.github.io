@@ -525,6 +525,17 @@
       }
     });
 
+    // Limitar campo Edad a 3 dígitos numéricos
+    const insuredAgeInput = document.getElementById('insured-age');
+    insuredAgeInput.addEventListener('input', function() {
+      // Eliminar caracteres no numéricos (por si el navegador permite escribir letras)
+      this.value = this.value.replace(/\D/g, '');
+      // Limitar a 3 dígitos
+      if (this.value.length > 3) {
+        this.value = this.value.slice(0, 3);
+      }
+    });
+
     // Formulario principal
     document.getElementById('search-form').addEventListener('submit', e => {
       e.preventDefault();
@@ -548,11 +559,16 @@
     document.getElementById('insurance-quote-form').addEventListener('submit', e => {
       e.preventDefault();
       const name = document.getElementById('insured-name').value.trim();
-      const age = parseInt(document.getElementById('insured-age').value, 10);
+      const ageStr = document.getElementById('insured-age').value.trim();
+      const age = parseInt(ageStr, 10);
       const country = document.getElementById('insured-country').value.trim();
       const startDate = document.getElementById('insured-start-date').value;
       const endDate = document.getElementById('insured-end-date').value;
 
+      if (!/^\d{1,3}$/.test(ageStr) || isNaN(age) || age < 0 || age > 120) {
+        alert('Por favor, ingresa una edad válida (0-120, máximo 3 dígitos).');
+        return;
+      }
       if (endDate <= startDate) {
         alert('La fecha de fin debe ser posterior a la fecha de inicio.');
         return;
@@ -581,3 +597,12 @@
   </script>
 </body>
 </html>
+Con este código, el campo Edad solo acepta hasta tres dígitos numéricos y está validado tanto en la entrada como al enviar el formulario.
+¿Necesitas otra mejora? ¡Dímelo!
+
+Preguntas relacionadas
+Podrías proporcionarme el código completo actualizado del archivo index.html con la corrección que mencionaste
+Qué cambios específicos quieres que aplique en la estructura o estilos del código corregido
+Deseas que incluya alguna funcionalidad adicional o solo la corrección solicitada
+Prefieres que te entregue el código en un bloque de texto formateado para copiar fácilmente
+Hay algún aspecto particular del código original que deba mantener o modificar además de la corrección}
